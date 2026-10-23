@@ -36,7 +36,7 @@ public class ControladorVentanas {
 
             st.show();
 
-        } catch (IOException | NullPointerException e) {
+        } catch (IOException | NullPointerException | IllegalStateException e) {
             setAlert(Alert.AlertType.WARNING, "Error al cargar la vista " + e.getMessage());
         }
     }
@@ -47,7 +47,7 @@ public class ControladorVentanas {
         defaultAlert.setHeaderText(null);
         defaultAlert.getButtonTypes().setAll(acceptButton);
         defaultAlert.setContentText(argument);
-        defaultAlert.showAndWait();
+        defaultAlert.show();
     }
 
     public ArrayList<Alumno> getAlumnos() {

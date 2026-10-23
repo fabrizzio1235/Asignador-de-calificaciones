@@ -17,7 +17,7 @@
         <TextField  fx:id="csvUsuario"/>
         <Label text=".csv" styleClass="label-terminacion" />
         <StackPane styleClass="sombra-inferior-button">
-            <Button text="Confirmar" onAction="#buscarCsvUsuario"/>
+            <Button fx:id="botonConfirmarCarga" text="Confirmar" onAction="#buscarCsvUsuario"/>
         </StackPane>
     </HBox>
     <HBox alignment="CENTER" spacing="5">

@@ -13,38 +13,65 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
+        <!-- Librería para crear los reportes en formato PDF (GeneradorReportePDF) -->
         <dependency>
             <groupId>com.github.librepdf</groupId>
             <artifactId>openpdf</artifactId>
             <version>1.3.30</version>
         </dependency>
+
+        <!-- Controles gráficos de JavaFX (Button, TextField, TableView, Alert, etc.) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>17.0.8</version>
         </dependency>
+
+        <!-- Carga de archivos de vistas .fxml y anotación @FXML -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>17.0.8</version>
         </dependency>
+
+        <!-- Motor de pruebas unitarias JUnit 5 (@Test, @BeforeEach, Assertions) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Librería de mocks (usada por las pruebas de otros integrantes del equipo) -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>5.23.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Núcleo de TestFX: permite buscar controles (lookup) e interactuar con ventanas JavaFX -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Integración de TestFX con el ciclo de vida de JUnit 5 (ApplicationTest) -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Compila el código fuente del proyecto usando Java 17 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -55,12 +82,17 @@
                 </configuration>
             </plugin>
 
+            <!-- Ejecuta las pruebas con 'mvn test' en el classpath para evitar bloqueos de module-info -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+                <configuration>
+                    <useModulePath>false</useModulePath>
+                </configuration>
             </plugin>
 
+            <!-- Permite ejecutar la aplicación JavaFX con el comando 'mvn javafx:run' -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -75,6 +107,7 @@
                 </executions>
             </plugin>
 
+            <!-- Permite ejecutar la clase principal con 'mvn exec:java' -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
