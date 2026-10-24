@@ -1,5 +1,7 @@
 package uady.ucan.proyecto;
 
+import com.lowagie.text.pdf.PdfReader;
+import com.lowagie.text.pdf.parser.PdfTextExtractor;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableView;
@@ -34,7 +36,7 @@ class GenerarArchivosTest extends PruebaBase {
             int calificacion = 100;
             for (Alumno a : tabla.getItems()) {
                 a.setCalificacion(calificacion);
-                calificacion -= 10; // Asigna 100, 90, 80, 70, 60, 50 para probar el ordenamiento
+                calificacion -= 10;
             }
         });
 
@@ -135,18 +137,17 @@ class GenerarArchivosTest extends PruebaBase {
 
     /*
      * Técnica: Move Method todosCalificados() (ID-03) / Replace Nested Conditional with Guard Clauses (ID-13) / Replace Magic Number en PDF (ID-11) / Form Template Method (ID-20)
-     * Objetivo: Verificar que cuando quedan alumnos sin calificar (-1), la generación de CSV se rechaza con la alerta "Quedan alumnos por calificar", mientras que el PDF sí se genera ("S/C").
-     * Resultado esperado: No se crea el archivo CSV, se muestra la alerta de advertencia de alumnos sin calificar y sí se crea el archivo PDF.
+     * Objetivo: Verificar que cuando quedan alumnos sin calificar (-1), la generación de CSV se rechaza con la alerta "Quedan alumnos por calificar", mientras que el PDF sí se genera con sus encabezados y "S/C".
+     * Resultado esperado: No se crea el archivo CSV, se muestra "Quedan alumnos por calificar", sí se crea el PDF y su texto contiene "Reporte de Calificaciones", "Matrícula", "Calificación" y "S/C".
      * Datos: Lista "listaDS" recién cargada (con calificaciones en -1 sin modificar).
      */
     @Test
-    void conAlumnosSinCalificarRechazaCsvPeroSiGeneraPdf() {
+    void conAlumnosSinCalificarRechazaCsvPeroSiGeneraPdfConSC() throws IOException {
         File csvNoCreado = new File("output/SinCalificar.csv");
         File pdfCreado = new File("output/SinCalificar.pdf");
         csvNoCreado.delete();
         pdfCreado.delete();
 
-        // Recargar listaDS limpia para que los alumnos tengan calificación -1 (sin calificar)
         abrir(DIR + "CSVUsuario.fxml", "Busqueda de CSV");
         TextField campoCsv = buscar("#csvUsuario");
         Button confirmarCarga = buscar("#botonConfirmarCarga");
@@ -167,9 +168,7 @@ class GenerarArchivosTest extends PruebaBase {
             confirmarCsv.fire();
         });
 
-        String alertaCsv = textoAlertaAbierta();
-        assertNotNull(alertaCsv);
-        assertTrue(alertaCsv.startsWith("Quedan alumnos por calificar"));
+        assertEquals("Quedan alumnos por calificar", textoAlertaAbierta());
         assertFalse(csvNoCreado.exists(), "No debe crearse el CSV si faltan alumnos por calificar");
 
         interact(() -> {
@@ -178,7 +177,38 @@ class GenerarArchivosTest extends PruebaBase {
         });
 
         assertTrue(pdfCreado.exists(), "El PDF sí debe generarse aunque existan alumnos con -1 (S/C)");
+        try (PdfReader reader = new PdfReader(pdfCreado.getAbsolutePath())) {
+            String textoPdf = new PdfTextExtractor(reader).getTextFromPage(1);
+            assertTrue(textoPdf.contains("Reporte de Calificaciones"));
+            assertTrue(textoPdf.contains("Diseño de Software"));
+            assertTrue(textoPdf.contains("Matrícula"));
+            assertTrue(textoPdf.contains("S/C"));
+        }
         pdfCreado.delete();
+    }
+
+    /*
+     * Técnica: Move Method todosCalificados() (ID-03) / Decompose Conditional hayAlumnosCargados() (ID-14)
+     * Objetivo: Verificar que cuando la lista de alumnos es null (sin cargar), intentar generar el CSV devuelve false en todosCalificados() y muestra la alerta sin lanzar NullPointerException.
+     * Resultado esperado: Alerta con mensaje "Quedan alumnos por calificar".
+     * Datos: Lista de alumnos en null (forzada tras buscar un CSV inexistente), clic en #botonConfirmarCsv.
+     */
+    @Test
+    void conListaNullGenerarCsvMuestraAlertaDeFaltanPorCalificar() {
+        abrir(DIR + "CSVUsuario.fxml", "Busqueda de CSV");
+        TextField campoCsv = buscar("#csvUsuario");
+        Button confirmarCarga = buscar("#botonConfirmarCarga");
+        interact(() -> {
+            campoCsv.setText("noExiste");
+            confirmarCarga.fire();
+        });
+        cerrarVentanas();
+
+        abrir(DIR + "Generar.fxml", "Generar CSV/PDF");
+        Button confirmarCsv = buscar("#botonConfirmarCsv");
+        interact(confirmarCsv::fire);
+
+        assertEquals("Quedan alumnos por calificar", textoAlertaAbierta());
     }
 
     /*

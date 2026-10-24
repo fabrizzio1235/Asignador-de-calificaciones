@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: uady.ucan.proyecto.GenerarArchivosTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.611 s -- in uady.ucan.proyecto.GenerarArchivosTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.027 s -- in uady.ucan.proyecto.GenerarArchivosTest

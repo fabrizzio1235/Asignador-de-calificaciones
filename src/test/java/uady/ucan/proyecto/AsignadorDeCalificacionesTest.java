@@ -45,7 +45,7 @@ class AsignadorDeCalificacionesTest extends PruebaBase {
         Alumno primero = tabla.getItems().get(0);
         String nombreEsperado = primero.getAppellido1() + " " + primero.getAppellido2() + " " + primero.getNombres();
 
-        assertEquals( nombreEsperado, primero.getNombreCompleto());
+        assertEquals(nombreEsperado, primero.getNombreCompleto());
         assertEquals(primero.getMatricula(), tabla.getColumns().get(0).getCellObservableValue(0).getValue());
         assertEquals(nombreEsperado, tabla.getColumns().get(1).getCellObservableValue(0).getValue());
         assertEquals("-1", tabla.getColumns().get(2).getCellObservableValue(0).getValue());
@@ -75,9 +75,9 @@ class AsignadorDeCalificacionesTest extends PruebaBase {
 
     /*
      * Técnica: Move Method validación a Alumno (ID-04) / Replace Magic Number límites 0 y 100 (ID-11) / Extract Method (ID-01a)
-     * Objetivo: Verificar que ingresar una calificación entera fuera del rango 0..100 (como -5 o 101) muestra una alerta de advertencia y conserva la calificación anterior.
-     * Resultado esperado: Se abre una alerta WARNING y la calificación del alumno permanece en -1.
-     * Datos: Edición en fila 0 con valor "101".
+     * Objetivo: Verificar que ingresar una calificación entera fuera del rango 0..100 (tanto negativa -5 como mayor a 100) muestra la alerta de advertencia y conserva la calificación anterior.
+     * Resultado esperado: Se abre la alerta "Calificación invalida --> 0<= calificacion <= 100" en ambos casos y la calificación del alumno permanece en -1.
+     * Datos: Ediciones en fila 0 con valores "-5" y "101".
      */
     @Test
     void edicionDeCalificacionFueraDeRangoMuestraAlertaYNoModificaAlumno() {
@@ -86,16 +86,19 @@ class AsignadorDeCalificacionesTest extends PruebaBase {
         TableView<Alumno> tabla = buscar("#tablaAlumnos");
         Alumno alumno = tabla.getItems().get(0);
 
-        editarCeldaCalificacion(tabla, 0, "101");
+        editarCeldaCalificacion(tabla, 0, "-5");
+        assertEquals("Calificación invalida --> 0<= calificacion <= 100", textoAlertaAbierta());
+        assertEquals(-1, alumno.getCalificacion());
 
-        assertNotNull(textoAlertaAbierta());
+        editarCeldaCalificacion(tabla, 0, "101");
+        assertEquals("Calificación invalida --> 0<= calificacion <= 100", textoAlertaAbierta());
         assertEquals(-1, alumno.getCalificacion());
     }
 
     /*
      * Técnica: Move Method validación a Alumno (ID-04) / Extract Method (ID-01a)
-     * Objetivo: Verificar que ingresar un valor no entero (decimales o letras) en la columna de calificación muestra una alerta de advertencia y no modifica al alumno.
-     * Resultado esperado: Se abre una alerta WARNING y la calificación del alumno permanece en -1.
+     * Objetivo: Verificar que ingresar un valor no entero (decimales o caracteres) en la columna de calificación muestra la alerta correspondiente y no modifica al alumno.
+     * Resultado esperado: Se abre la alerta "Calificación invalida solo acepta enteros --> 0<= calificacion <= 100" y la calificación permanece en -1.
      * Datos: Edición en fila 0 con valor "95.5".
      */
     @Test
@@ -107,7 +110,7 @@ class AsignadorDeCalificacionesTest extends PruebaBase {
 
         editarCeldaCalificacion(tabla, 0, "95.5");
 
-        assertNotNull(textoAlertaAbierta());
+        assertEquals("Calificación invalida solo acepta enteros --> 0<= calificacion <= 100", textoAlertaAbierta());
         assertEquals(-1, alumno.getCalificacion());
     }
 

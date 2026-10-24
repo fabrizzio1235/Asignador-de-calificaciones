@@ -2,6 +2,7 @@ package uady.ucan.proyecto;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class RecibirCSVUsuarioTest extends PruebaBase {
 
     /*
      * Técnica: Extract Method/Class en lectura de CSV (ID-07) / Replace Magic Number (ID-11) / Replace Inheritance with Delegation (ID-18b)
-     * Objetivo: Verificar que al ingresar un nombre de CSV válido ("listaDS") se cargan los renglones de 4 columnas, la etiqueta se pinta en verde con el nombre y se muestra la ruta absoluta.
+     * Objetivo: Verificar que al ingresar un nombre de CSV válido ("listaDS") se cargan los alumnos, la etiqueta se pinta en verde con el nombre y se muestra la ruta absoluta.
      * Resultado esperado: #mostrarCsvUsuario tiene texto "listaDS" en Color.GREEN y #rutaUsuario contiene la ruta absoluta de src/main/resources/listaDS.csv.
      * Datos: Nombre de archivo = "listaDS".
      */
@@ -42,8 +43,8 @@ class RecibirCSVUsuarioTest extends PruebaBase {
 
     /*
      * Técnica: Extract Method/Class en lectura de CSV (ID-07) / Replace Inheritance with Delegation (ID-18b)
-     * Objetivo: Verificar que al buscar un archivo CSV inexistente se muestra "No seleccionado" en rojo, se lanza la alerta de advertencia, la ruta previa no se limpia y la lista queda en null.
-     * Resultado esperado: #mostrarCsvUsuario dice "No seleccionado" en Color.RED, #rutaUsuario conserva la ruta previa, alerta inicia con "Error al buscar archivo: " y Generar en el menú avisa falta de CSV.
+     * Objetivo: Verificar que al buscar un archivo CSV inexistente se muestra "No seleccionado" en rojo, se lanza la alerta de advertencia, la ruta previa no se limpia y la lista de alumnos queda en null.
+     * Resultado esperado: #mostrarCsvUsuario dice "No seleccionado" en Color.RED, #rutaUsuario conserva la ruta previa, alerta inicia con "Error al buscar archivo: " y la tabla de calificaciones abre vacía (lista en null).
      * Datos: Primero se carga "listaDS" y luego se busca "archivoInexistente".
      */
     @Test
@@ -52,7 +53,6 @@ class RecibirCSVUsuarioTest extends PruebaBase {
         TextField campoCsv = buscar("#csvUsuario");
         Button confirmarCarga = buscar("#botonConfirmarCarga");
 
-        // 1. Cargar primero un CSV válido para fijar una ruta en #rutaUsuario
         interact(() -> {
             campoCsv.setText("listaDS");
             confirmarCarga.fire();
@@ -60,7 +60,6 @@ class RecibirCSVUsuarioTest extends PruebaBase {
         Label ruta = buscar("#rutaUsuario");
         String rutaPrevia = ruta.getText();
 
-        // 2. Intentar cargar un CSV inexistente
         interact(() -> {
             campoCsv.setText("archivoInexistente");
             confirmarCarga.fire();
@@ -74,5 +73,10 @@ class RecibirCSVUsuarioTest extends PruebaBase {
         assertEquals(rutaPrevia, ruta.getText(), "La ruta mostrada no debe limpiarse tras un error");
         assertNotNull(alerta);
         assertTrue(alerta.startsWith("Error al buscar archivo: "));
+
+        // Comprobar que la lista quedó en null abriendo Calificaciones y viendo que está vacía
+        abrir(DIR + "Calificaciones.fxml", "Gestion de Calificaciones");
+        TableView<Alumno> tabla = buscar("#tablaAlumnos");
+        assertTrue(tabla.getItems().isEmpty(), "La lista de alumnos debe quedar en null tras fallar la lectura");
     }
 }
