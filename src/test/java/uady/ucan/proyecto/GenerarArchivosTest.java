@@ -126,7 +126,7 @@ class GenerarArchivosTest extends PruebaBase {
         });
 
         assertTrue(archivoCsv.exists());
-        List<String> lineas = Files.readAllLines(archivoCsv.toPath());
+        List<String> lineas = Files.readAllLines(archivoCsv.toPath(), java.nio.charset.Charset.defaultCharset());
         assertEquals(7, lineas.size(), "Debe tener 1 encabezado y 6 líneas de alumnos");
         assertEquals("Matricula,Primer Apellido,Segundo Apellido,Nombres,Calificacion", lineas.get(0));
         assertTrue(lineas.get(1).endsWith(",50"), "El primer alumno del archivo debe ser el de menor calificación (50)");
