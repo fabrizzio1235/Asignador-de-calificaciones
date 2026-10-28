@@ -11,18 +11,22 @@ import java.security.NoSuchAlgorithmException;
 
 import static uady.ucan.proyecto.Alerta.setAlert;
 
-public class Login extends ControladorVentanas {
+public class Login {
     @FXML private TextField usuarioEntrada;
     @FXML private PasswordField contraseñaEntrada;
     @FXML private Button botonLogin;
+    //ID-19 replace inheritence with delegation
+    private ControladorVentanas gestorVentanas;
 
     // Ya no se hace el "new", se declara vacío para recibirlo por constructor
     private RepositorioUsuarios repositorioUsuarios;
     private Encriptador encriptador = new Encriptador();
 
     // ID-15: Add Parameter
-    public Login(RepositorioUsuarios repositorioUsuarios) {
+    public Login(RepositorioAlumnos repositorioAlumnos, RepositorioUsuarios repositorioUsuarios) {
         this.repositorioUsuarios = repositorioUsuarios;
+        // El delegado ahora recibe ambos repositorios intactos para pasarlos al resto de ventanas
+        this.gestorVentanas = new ControladorVentanas(repositorioAlumnos, repositorioUsuarios);
     }
 
     @FXML
@@ -41,8 +45,8 @@ public class Login extends ControladorVentanas {
             setAlert(Alert.AlertType.WARNING, "Contraseña incorrecta.");
             return;
         }
-
-        menu();
+        //ID-19: se delega la acción
+        gestorVentanas.menu();
         botonLogin.getScene().getWindow().hide();
     }
 }

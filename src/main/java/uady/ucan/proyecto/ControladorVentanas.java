@@ -74,7 +74,7 @@ public class ControladorVentanas {
             return new AsignadorDeCalificaciones(repositorioAlumnos);
         }
         if (tipo == Login.class) {
-            return new Login(repositorioUsuarios);
+            return new Login(repositorioAlumnos, repositorioUsuarios);
         }
         try {
             //Hace el comportamiento default, generar la clase sin parametros
