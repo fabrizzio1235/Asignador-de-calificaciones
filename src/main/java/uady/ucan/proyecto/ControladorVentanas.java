@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ControladorVentanas {
-    private static ArrayList <Alumno> alumnos = null;
+    Stage st = new Stage();
 
     public static final String VIEWS_DIRECTORY = "/uady/ucan/proyecto/Views/";
     public static final String LOGIN_VIEW_FXML = VIEWS_DIRECTORY + "Login.fxml";
@@ -23,20 +23,18 @@ public class ControladorVentanas {
 
     public void abrirVentana(String fxmlFileName, String title) {
         try {
-            Stage st = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(ControladorVentanas.class.getResource(fxmlFileName));
             Scene scene = new Scene(fxmlLoader.load());
 
             st.setTitle(title);
             st.setScene(scene);
 
-
             st.sizeToScene();
             st.centerOnScreen();
 
             st.show();
 
-        } catch (IOException | NullPointerException | IllegalStateException e) {
+        } catch (IOException | NullPointerException e) {
             setAlert(Alert.AlertType.WARNING, "Error al cargar la vista " + e.getMessage());
         }
     }
@@ -47,14 +45,6 @@ public class ControladorVentanas {
         defaultAlert.setHeaderText(null);
         defaultAlert.getButtonTypes().setAll(acceptButton);
         defaultAlert.setContentText(argument);
-        defaultAlert.show();
-    }
-
-    public ArrayList<Alumno> getAlumnos() {
-        return alumnos;
-    }
-
-    public void setAlumnos(ArrayList<Alumno> alumnos) {
-        this.alumnos = alumnos;
+        defaultAlert.showAndWait();
     }
 }

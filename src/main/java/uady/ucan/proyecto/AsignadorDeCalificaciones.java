@@ -24,18 +24,23 @@ public class AsignadorDeCalificaciones extends CambioDeMenu implements Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<Alumno> listaPadre = getAlumnos();
+        ArrayList<Alumno> listaPadre = repositorioAlumnos.getAlumnos();
 
         if (listaPadre != null) {
             alumnos = FXCollections.observableArrayList(listaPadre);
             tablaAlumnos.setItems(alumnos);
         }
-        matricula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMatricula()));
-        alumno.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombreCompleto()));
-        calificacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCalificacion())));
+
+        matricula.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getMatricula()));
+        alumno.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNombreCompleto()));
+        calificacion.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.valueOf(cellData.getValue().getCalificacion())));
 
         tablaAlumnos.setEditable(true);
         calificacion.setCellFactory(TextFieldTableCell.forTableColumn());
+
         calificacion.setOnEditCommit(event -> {
             Alumno alumnoEditado = event.getRowValue();
 

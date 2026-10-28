@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class GeneradorDeCSV  extends CambioDeMenu {
-    @FXML
+    ArrayList<Alumno> alumnos = repositorioAlumnos.getAlumnos();
+
     public void generarCsv(String csvNombre) {
         //Remove Assignments to Parameters - Nuevo
         String nombreFinal = (csvNombre == null || csvNombre.trim().isEmpty()) ? "Calificaciones" : csvNombre;
 
         if(todosCalificados()) {
-            ArrayList<Alumno> alumnos = getAlumnos();
             alumnos.sort(Comparator.comparingInt(Alumno::getCalificacion));
             System.out.println("Escriba el nombre que desea para el archivo de salida:");
             String nombreArchivo = "output/"+ nombreFinal + ".csv";
@@ -30,15 +30,16 @@ public class GeneradorDeCSV  extends CambioDeMenu {
                 }
                 setAlert(Alert.AlertType.CONFIRMATION, "Archivo CSV creado con exito en: " + new File(nombreArchivo).getAbsolutePath());
             } catch (IOException e) {
-               setAlert(Alert.AlertType.ERROR, "Error: " + e.getMessage());
+                setAlert(Alert.AlertType.ERROR, "Error: " + e.getMessage());
             }
         } else {
             setAlert(Alert.AlertType.WARNING, "Quedan alumnos por calificar");
         }
     }
+
     public boolean todosCalificados() {
-        if(getAlumnos() == null) {return false;}
-        for (Alumno a : getAlumnos()) {
+        if(alumnos == null) {return false;}
+        for (Alumno a : alumnos) {
             if (a.getCalificacion() == -1) {
                 return false;
             }

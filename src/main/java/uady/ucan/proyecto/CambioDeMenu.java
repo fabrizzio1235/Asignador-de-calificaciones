@@ -15,6 +15,9 @@ public class CambioDeMenu extends ControladorVentanas {
     @FXML
     private Button botonSalir;
 
+    // Se instancia RepositorioAlumnos desde aquí para que todas las clases hijas tengan acceso a ella.
+    protected RepositorioAlumnos repositorioAlumnos = new RepositorioAlumnos();
+
     @FXML
     public void asignarCalificacion () {
         abrirVentana(CALIFICACIONES_VIEW_FXML, "Gestion de Calificaciones");
@@ -27,7 +30,7 @@ public class CambioDeMenu extends ControladorVentanas {
 
     @FXML
     public void generar () {
-        if(getAlumnos() == null){
+        if(repositorioAlumnos.getAlumnos() == null){
             setAlert(Alert.AlertType.WARNING, "Asegurarse de escoger el archivo CSV");
             return;
         }
