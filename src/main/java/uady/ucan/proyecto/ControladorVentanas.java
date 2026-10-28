@@ -10,7 +10,7 @@ import java.io.IOException;
 import static uady.ucan.proyecto.Alerta.setAlert;
 
 public class ControladorVentanas {
-    Stage st = new Stage();
+
 
     public static final String VIEWS_DIRECTORY = "/uady/ucan/proyecto/Views/";
     public static final String LOGIN_VIEW_FXML = VIEWS_DIRECTORY + "Login.fxml";
@@ -19,11 +19,12 @@ public class ControladorVentanas {
     public static final String CALIFICACIONES_VIEW_FXML = VIEWS_DIRECTORY + "Calificaciones.fxml";
     public static final String CSV_USUARIO_VIEW_FXML = VIEWS_DIRECTORY + "CSVUsuario.fxml";
 
-    static Alert defaultAlert;
-    static ButtonType acceptButton = new ButtonType("Aceptar");
+    protected RepositorioAlumnos repositorioAlumnos = new RepositorioAlumnos();
+
 
     public void abrirVentana(String fxmlFileName, String title) {
         try {
+            Stage st = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(ControladorVentanas.class.getResource(fxmlFileName));
             Scene scene = new Scene(fxmlLoader.load());
 
@@ -35,7 +36,7 @@ public class ControladorVentanas {
 
             st.show();
 
-        } catch (IOException | NullPointerException e) {
+        } catch (IOException | NullPointerException | IllegalStateException e) {
             setAlert(Alert.AlertType.WARNING, "Error al cargar la vista " + e.getMessage());
         }
     }

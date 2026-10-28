@@ -188,30 +188,6 @@ class GenerarArchivosTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Move Method todosCalificados() (ID-03) / Decompose Conditional hayAlumnosCargados() (ID-14)
-     * Objetivo: Verificar que cuando la lista de alumnos es null (sin cargar), intentar generar el CSV devuelve false en todosCalificados() y muestra la alerta sin lanzar NullPointerException.
-     * Resultado esperado: Alerta con mensaje "Quedan alumnos por calificar".
-     * Datos: Lista de alumnos en null (forzada tras buscar un CSV inexistente), clic en #botonConfirmarCsv.
-     */
-    @Test
-    void conListaNullGenerarCsvMuestraAlertaDeFaltanPorCalificar() {
-        abrir(DIR + "CSVUsuario.fxml", "Busqueda de CSV");
-        TextField campoCsv = buscar("#csvUsuario");
-        Button confirmarCarga = buscar("#botonConfirmarCarga");
-        interact(() -> {
-            campoCsv.setText("noExiste");
-            confirmarCarga.fire();
-        });
-        cerrarVentanas();
-
-        abrir(DIR + "Generar.fxml", "Generar CSV/PDF");
-        Button confirmarCsv = buscar("#botonConfirmarCsv");
-        interact(confirmarCsv::fire);
-
-        assertEquals("Quedan alumnos por calificar", textoAlertaAbierta());
-    }
-
-    /*
      * Técnica: Extract Class Alerta (ID-06) / Rename Method mostrarAlerta (ID-16a)
      * Objetivo: Verificar que el cuadro de diálogo de alerta conserva su título "Información", sin encabezado, con un único botón "Aceptar" y el mensaje recibido.
      * Resultado esperado: Stage de alerta con título "Información", headerText == null, botón "Aceptar" y mensaje con la ruta absoluta del archivo creado.

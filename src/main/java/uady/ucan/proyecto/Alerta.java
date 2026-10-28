@@ -15,6 +15,6 @@ public class Alerta {
         defaultAlert.setHeaderText(null);
         defaultAlert.getButtonTypes().setAll(acceptButton);
         defaultAlert.setContentText(argument);
-        defaultAlert.showAndWait();
+        defaultAlert.show();
     }
 }

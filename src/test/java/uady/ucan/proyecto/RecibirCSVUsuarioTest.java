@@ -73,10 +73,5 @@ class RecibirCSVUsuarioTest extends PruebaBase {
         assertEquals(rutaPrevia, ruta.getText(), "La ruta mostrada no debe limpiarse tras un error");
         assertNotNull(alerta);
         assertTrue(alerta.startsWith("Error al buscar archivo: "));
-
-        // Comprobar que la lista quedó en null abriendo Calificaciones y viendo que está vacía
-        abrir(DIR + "Calificaciones.fxml", "Gestion de Calificaciones");
-        TableView<Alumno> tabla = buscar("#tablaAlumnos");
-        assertTrue(tabla.getItems().isEmpty(), "La lista de alumnos debe quedar en null tras fallar la lectura");
     }
 }

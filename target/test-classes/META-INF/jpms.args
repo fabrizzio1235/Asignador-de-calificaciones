@@ -1,4 +1,0 @@
---patch-module
-uady.ucan.proyecto=_
---add-reads
-uady.ucan.proyecto=ALL-UNNAMED

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 abstract class PruebaBase extends ApplicationTest {
     protected ControladorVentanas controlador;
-    protected RepositorioAlumnos repositorioAlumnos;
 
     @Override
     public void start(Stage stage) {
@@ -22,11 +21,11 @@ abstract class PruebaBase extends ApplicationTest {
 
     @BeforeEach
     void prepararEstado() {
-        // HOY (Antes de refactorizar):
-        controlador = new ControladorVentanas();
-        repositorioAlumnos.setAlumnos(null);
-        // PRÓXIMA SEMANA (Después de ID-12 e ID-15):
-        // controlador = new ControladorVentanas(new RepositorioAlumnos(), new RepositorioUsuarios());
+        interact(() -> {
+            // ID-02
+            controlador = new ControladorVentanas();
+            controlador.repositorioAlumnos.setAlumnos(null);
+        });
     }
 
     @AfterEach
