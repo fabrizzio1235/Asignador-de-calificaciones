@@ -25,10 +25,6 @@ public class ControladorVentanas {
     private  RepositorioUsuarios repositorioUsuarios;
 
     @FXML
-    private TextField csvNombre;
-    @FXML
-    private TextField pdfNombre;
-    @FXML
     private Button botonSalir;
 
     // ID-15: Add Parameter (recibe los repositorios por constructor)
@@ -75,6 +71,9 @@ public class ControladorVentanas {
         }
         if (tipo == Login.class) {
             return new Login(repositorioAlumnos, repositorioUsuarios);
+        }
+        if (tipo == ControladorGeneradorArchivos.class) {
+            return new ControladorGeneradorArchivos(repositorioAlumnos);
         }
         try {
             //Hace el comportamiento default, generar la clase sin parametros
@@ -125,14 +124,4 @@ public class ControladorVentanas {
         Platform.exit();
     }
 
-    @FXML
-    public void generarCSV () {
-        GeneradorDeCSV csv = new GeneradorDeCSV(repositorioAlumnos);
-        csv.generarCsv(csvNombre.getText());
-    }
-    @FXML
-    public void generarPDF() {
-        GeneradorReportePDF pdf = new GeneradorReportePDF(repositorioAlumnos);
-        pdf.generarPdf(pdfNombre.getText());
-    }
 }
