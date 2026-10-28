@@ -21,11 +21,9 @@ abstract class PruebaBase extends ApplicationTest {
 
     @BeforeEach
     void prepararEstado() {
-        interact(() -> {
             // ID-02
             controlador = new ControladorVentanas();
             controlador.repositorioAlumnos.setAlumnos(null);
-        });
     }
 
     @AfterEach
