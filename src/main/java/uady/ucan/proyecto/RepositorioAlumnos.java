@@ -2,10 +2,11 @@ package uady.ucan.proyecto;
 
 import java.util.ArrayList;
 
-// AHora existe una clase que se encarga de almacenar a la lista de alumnos que se está modificando en la aplicación.
+// ID-2 Ahora existe una clase que se encarga de almacenar a la lista de alumnos que se está modificando en la aplicación.
 
 public class RepositorioAlumnos {
-    private static ArrayList<Alumno> listaAlumnos;
+    // ID-02: Move Field e ID-12: Change Value to Reference (instancia única, no estático)
+    private ArrayList<Alumno> listaAlumnos;
 
     public ArrayList<Alumno> getAlumnos() {
         return listaAlumnos;

@@ -12,9 +12,16 @@ import java.util.Comparator;
 import static uady.ucan.proyecto.Alerta.setAlert;
 
 public class GeneradorDeCSV  extends ControladorVentanas {
-    ArrayList<Alumno> alumnos = repositorioAlumnos.getAlumnos();
+    private RepositorioAlumnos repositorioAlumnos;
+
+    // ID-15: Add Parameter
+    public GeneradorDeCSV(RepositorioAlumnos repositorioAlumnos) {
+        this.repositorioAlumnos = repositorioAlumnos;
+    }
 
     public void generarCsv(String csvNombre) {
+        ArrayList<Alumno> alumnos = repositorioAlumnos.getAlumnos();
+
         //Remove Assignments to Parameters - Nuevo
         String nombreFinal = (csvNombre == null || csvNombre.trim().isEmpty()) ? "Calificaciones" : csvNombre;
 

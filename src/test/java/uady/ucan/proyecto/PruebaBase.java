@@ -21,9 +21,10 @@ abstract class PruebaBase extends ApplicationTest {
 
     @BeforeEach
     void prepararEstado() {
-            // ID-02
-            controlador = new ControladorVentanas();
-            controlador.repositorioAlumnos.setAlumnos(null);
+            // ID-15 y ID-02
+        RepositorioAlumnos repositorioAlumnos = new RepositorioAlumnos();
+        RepositorioUsuarios repositorioUsuarios = new RepositorioUsuarios();
+        controlador = new ControladorVentanas(repositorioAlumnos, repositorioUsuarios);
     }
 
     @AfterEach

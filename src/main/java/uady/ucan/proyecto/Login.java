@@ -16,9 +16,14 @@ public class Login extends ControladorVentanas {
     @FXML private PasswordField contraseñaEntrada;
     @FXML private Button botonLogin;
 
-    // Se instancian RepositorioUsuarios y Encriptador en Login porque solo él hace uso de las clases.
-    private RepositorioUsuarios repositorioUsuarios = new RepositorioUsuarios();
+    // Ya no se hace el "new", se declara vacío para recibirlo por constructor
+    private RepositorioUsuarios repositorioUsuarios;
     private Encriptador encriptador = new Encriptador();
+
+    // ID-15: Add Parameter
+    public Login(RepositorioUsuarios repositorioUsuarios) {
+        this.repositorioUsuarios = repositorioUsuarios;
+    }
 
     @FXML
     public void inicioSesion() throws NoSuchAlgorithmException { // 0: Entrar a la app, 1: Salir

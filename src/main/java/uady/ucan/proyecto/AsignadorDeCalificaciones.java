@@ -21,7 +21,14 @@ public class AsignadorDeCalificaciones extends ControladorVentanas implements In
     @FXML private TableColumn<Alumno, String> alumno;
     @FXML private TableColumn<Alumno, String> calificacion;
 
+
+    private final RepositorioAlumnos repositorioAlumnos;
     private ObservableList<Alumno> alumnos = null;
+
+    // ID-15: Add Parameter
+    public AsignadorDeCalificaciones(RepositorioAlumnos repositorioAlumnos) {
+        this.repositorioAlumnos = repositorioAlumnos;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

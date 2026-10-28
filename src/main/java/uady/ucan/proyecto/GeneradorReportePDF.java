@@ -15,6 +15,12 @@ import java.util.ArrayList;
 import static uady.ucan.proyecto.Alerta.setAlert;
 
 public class GeneradorReportePDF extends ControladorVentanas {
+    private RepositorioAlumnos repositorioAlumnos;
+
+    // ID-15: Add Parameter
+    public GeneradorReportePDF(RepositorioAlumnos repositorioAlumnos) {
+        this.repositorioAlumnos = repositorioAlumnos;
+    }
 
     //Extract Method - Nuevo
     //Usa alumnoActual en vez de alumnitos.get(i) repetido

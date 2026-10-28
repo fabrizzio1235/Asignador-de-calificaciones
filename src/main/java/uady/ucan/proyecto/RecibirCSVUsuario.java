@@ -24,9 +24,16 @@ public class RecibirCSVUsuario extends ControladorVentanas {
 
     private ArrayList<Alumno> listaAlumnos;
 
+    private  RepositorioAlumnos repositorioAlumnos;
+
+
+    // ID-15: Add Parameter
+    public RecibirCSVUsuario(RepositorioAlumnos repositorioAlumnos) {
+        this.repositorioAlumnos = repositorioAlumnos;
+    }
+
     @FXML
     public void buscarCsvUsuario() {
-
         String archivoCalificaciones = "src/main/resources/" + csvUsuario.getText() + ".csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivoCalificaciones))) {
