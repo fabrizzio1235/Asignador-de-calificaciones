@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 import static uady.ucan.proyecto.Alerta.setAlert;
 
 
-public class AsignadorDeCalificaciones extends CambioDeMenu implements Initializable {
+public class AsignadorDeCalificaciones extends ControladorVentanas implements Initializable {
     @FXML private TableView<Alumno> tablaAlumnos;
     @FXML private TableColumn<Alumno, String> matricula;
     @FXML private TableColumn<Alumno, String> alumno;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import static uady.ucan.proyecto.Alerta.setAlert;
 
-public class RecibirCSVUsuario extends CambioDeMenu {
+public class RecibirCSVUsuario extends ControladorVentanas {
     @FXML
     private TextField csvUsuario;
     @FXML

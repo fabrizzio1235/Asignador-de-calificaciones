@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
-<BorderPane prefHeight="320" prefWidth="400" style="-fx-padding: 10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.CambioDeMenu">
+<BorderPane prefHeight="320" prefWidth="400" style="-fx-padding: 10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.ControladorVentanas">
     <stylesheets>
         <URL value="@Styles/styles.css"/>
     </stylesheets>

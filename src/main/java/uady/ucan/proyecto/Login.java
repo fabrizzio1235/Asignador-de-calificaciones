@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 import static uady.ucan.proyecto.Alerta.setAlert;
 
-public class Login extends CambioDeMenu {
+public class Login extends ControladorVentanas {
     @FXML private TextField usuarioEntrada;
     @FXML private PasswordField contraseñaEntrada;
     @FXML private Button botonLogin;

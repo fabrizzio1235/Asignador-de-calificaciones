@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import static uady.ucan.proyecto.Alerta.setAlert;
 
-public class GeneradorReportePDF extends CambioDeMenu {
+public class GeneradorReportePDF extends ControladorVentanas {
 
     //Extract Method - Nuevo
     //Usa alumnoActual en vez de alumnitos.get(i) repetido

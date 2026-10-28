@@ -11,7 +11,7 @@ import java.util.Comparator;
 
 import static uady.ucan.proyecto.Alerta.setAlert;
 
-public class GeneradorDeCSV  extends CambioDeMenu {
+public class GeneradorDeCSV  extends ControladorVentanas {
     ArrayList<Alumno> alumnos = repositorioAlumnos.getAlumnos();
 
     public void generarCsv(String csvNombre) {
