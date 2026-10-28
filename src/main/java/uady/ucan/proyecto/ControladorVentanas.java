@@ -6,7 +6,8 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
+import static uady.ucan.proyecto.Alerta.setAlert;
 
 public class ControladorVentanas {
     Stage st = new Stage();
@@ -37,14 +38,5 @@ public class ControladorVentanas {
         } catch (IOException | NullPointerException e) {
             setAlert(Alert.AlertType.WARNING, "Error al cargar la vista " + e.getMessage());
         }
-    }
-
-    static public void setAlert(Alert.AlertType alertType,String argument){
-        defaultAlert = new Alert(alertType);
-        defaultAlert.setTitle("Información");
-        defaultAlert.setHeaderText(null);
-        defaultAlert.getButtonTypes().setAll(acceptButton);
-        defaultAlert.setContentText(argument);
-        defaultAlert.showAndWait();
     }
 }

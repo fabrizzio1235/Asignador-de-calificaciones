@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static uady.ucan.proyecto.Alerta.setAlert;
+
 public class RecibirCSVUsuario extends CambioDeMenu {
     @FXML
     private TextField csvUsuario;

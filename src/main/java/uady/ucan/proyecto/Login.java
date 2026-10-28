@@ -1,13 +1,10 @@
 package uady.ucan.proyecto;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -15,10 +12,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.lang.StringBuilder;
 
-import static uady.ucan.proyecto.ControladorVentanas.setAlert;
+import static uady.ucan.proyecto.Alerta.setAlert;
 
 public class Login extends CambioDeMenu {
     @FXML private TextField usuarioEntrada;

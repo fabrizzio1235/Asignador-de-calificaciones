@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static uady.ucan.proyecto.Alerta.setAlert;
 
 
 public class AsignadorDeCalificaciones extends CambioDeMenu implements Initializable {

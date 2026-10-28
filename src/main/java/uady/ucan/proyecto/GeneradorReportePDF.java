@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+import static uady.ucan.proyecto.Alerta.setAlert;
+
 public class GeneradorReportePDF extends CambioDeMenu {
 
     //Extract Method - Nuevo

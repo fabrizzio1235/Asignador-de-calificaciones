@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import static uady.ucan.proyecto.Alerta.setAlert;
+
 public class GeneradorDeCSV  extends CambioDeMenu {
     ArrayList<Alumno> alumnos = repositorioAlumnos.getAlumnos();
 
