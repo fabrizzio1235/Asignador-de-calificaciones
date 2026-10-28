@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class ControladorVentanas {
     Stage st = new Stage();
-    private static ArrayList <Alumno> alumnos = null;
 
     public static final String VIEWS_DIRECTORY = "/uady/ucan/proyecto/Views/";
     public static final String LOGIN_VIEW_FXML = VIEWS_DIRECTORY + "Login.fxml";
@@ -30,7 +29,6 @@ public class ControladorVentanas {
             st.setTitle(title);
             st.setScene(scene);
 
-
             st.sizeToScene();
             st.centerOnScreen();
 
@@ -48,13 +46,5 @@ public class ControladorVentanas {
         defaultAlert.getButtonTypes().setAll(acceptButton);
         defaultAlert.setContentText(argument);
         defaultAlert.showAndWait();
-    }
-
-    public ArrayList<Alumno> getAlumnos() {
-        return alumnos;
-    }
-
-    public void setAlumnos(ArrayList<Alumno> alumnos) {
-        this.alumnos = alumnos;
     }
 }
