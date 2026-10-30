@@ -2,16 +2,15 @@ package uady.ucan.proyecto;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static uady.ucan.proyecto.Alerta.setAlert;
+import static uady.ucan.proyecto.Alerta.mostrarAlerta;
 
 public class ControladorVentanas {
     public static final String VIEWS_DIRECTORY = "/uady/ucan/proyecto/Views/";
@@ -53,7 +52,7 @@ public class ControladorVentanas {
             st.show();
 
         } catch (IOException | NullPointerException | IllegalStateException e) {
-            setAlert(Alert.AlertType.WARNING, "Error al cargar la vista " + e.getMessage());
+            mostrarAlerta(Alert.AlertType.WARNING, "Error al cargar la vista " + e.getMessage());
         }
     }
 
@@ -98,7 +97,7 @@ public class ControladorVentanas {
     @FXML
     public void generar () {
         if(repositorioAlumnos.getAlumnos() == null){
-            setAlert(Alert.AlertType.WARNING, "Asegurarse de escoger el archivo CSV");
+            mostrarAlerta(Alert.AlertType.WARNING, "Asegurarse de escoger el archivo CSV");
             return;
         }
         abrirVentana(GENERAR_VIEW_FXML, "Generar CSV/PDF");
@@ -115,13 +114,20 @@ public class ControladorVentanas {
     }
 
     public void cerrarSesion () {
-        botonSalir.getScene().getWindow().hide();
+        cerrarVentanaDe(botonSalir);
         login();
     }
 
     @FXML
     public void salir () {
         Platform.exit();
+    }
+    //ID-08 Introduce Foreign Method (cerrarVentanaDe(Node control) en ControladorVentanas)
+    //  Dos clases usaban la misma cadena de llamadas para cerrar la ventana, así que
+    // se propone una operación que javaFx no ofrece directamente mediante el metodo
+    public void cerrarVentanaDe(Node control){
+        control.getScene().getWindow().hide();
+
     }
 
 }

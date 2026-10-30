@@ -12,14 +12,33 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-import static uady.ucan.proyecto.Alerta.setAlert;
+import static uady.ucan.proyecto.Alerta.mostrarAlerta;
 
-public class GeneradorReportePDF extends ControladorVentanas {
-    private RepositorioAlumnos repositorioAlumnos;
+public class GeneradorReportePDF extends GeneradorDeArchivo{
 
     // ID-15: Add Parameter
     public GeneradorReportePDF(RepositorioAlumnos repositorioAlumnos) {
-        this.repositorioAlumnos = repositorioAlumnos;
+        super(repositorioAlumnos);
+    }
+
+
+    @Override protected String nombrePorDefecto() { return "Reporte_Calificaciones"; }
+    @Override protected String extension() { return ".pdf"; }
+    @Override protected String mensajeExito() { return "Reporte PDF creado con exito en: "; }
+
+    @Override
+    protected void escribir(String ruta) throws Exception {
+        Document doc = new Document();
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(ruta));
+            doc.open();
+            doc.add(crearTitulo());
+            doc.add(crearSubtitulo());
+            doc.add(new Paragraph(" ")); doc.add(new Paragraph(" ")); // saltos de linea en el documento
+            doc.add(crearTabla(repositorioAlumnos.getAlumnos()));
+        } finally {
+            doc.close();
+        }
     }
 
     //Extract Method - Nuevo
@@ -60,22 +79,6 @@ public class GeneradorReportePDF extends ControladorVentanas {
     }
     @FXML
     public void generarPdf(String pdfNombre) {
-        String nombreFinal = (pdfNombre == null || pdfNombre.trim().isEmpty()) ? "Reporte_Calificaciones" : pdfNombre;
-        Document doc = new Document();
-        try {
-            PdfWriter.getInstance(doc, new FileOutputStream("output/"+nombreFinal+".pdf"));
-            doc.open();
-
-            doc.add(crearTitulo());
-            doc.add(crearSubtitulo());
-            doc.add(new Paragraph(" ")); doc.add(new Paragraph(" ")); // saltos de linea en el documento
-
-            doc.add(crearTabla(repositorioAlumnos.getAlumnos()));
-            setAlert(Alert.AlertType.CONFIRMATION, "Reporte PDF creado con exito en: " + new File("output/"+nombreFinal+".pdf").getAbsolutePath());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            doc.close();
-        }
+        generar(pdfNombre);
     }
 }

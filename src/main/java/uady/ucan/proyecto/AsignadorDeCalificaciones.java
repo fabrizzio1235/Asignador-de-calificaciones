@@ -7,15 +7,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import java.io.*;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static uady.ucan.proyecto.Alerta.setAlert;
+import static uady.ucan.proyecto.Alerta.mostrarAlerta;
 
 
-public class AsignadorDeCalificaciones extends ControladorVentanas implements Initializable {
+public class AsignadorDeCalificaciones implements Initializable {
     @FXML private TableView<Alumno> tablaAlumnos;
     @FXML private TableColumn<Alumno, String> matricula;
     @FXML private TableColumn<Alumno, String> alumno;
@@ -57,11 +57,11 @@ public class AsignadorDeCalificaciones extends ControladorVentanas implements In
                 if (nuevaCal >= 0 && nuevaCal <= 100) {
                     alumnoEditado.setCalificacion(nuevaCal);
                 } else {
-                    setAlert(Alert.AlertType.WARNING, "Calificación invalida --> 0<= calificacion <= 100");
+                    mostrarAlerta(Alert.AlertType.WARNING, "Calificación invalida --> 0<= calificacion <= 100");
                     tablaAlumnos.refresh();
                 }
             } catch (NumberFormatException e) {
-                setAlert(Alert.AlertType.WARNING, "Calificación invalida solo acepta enteros --> 0<= calificacion <= 100");
+                mostrarAlerta(Alert.AlertType.WARNING, "Calificación invalida solo acepta enteros --> 0<= calificacion <= 100");
                 tablaAlumnos.refresh();
             }
         });
