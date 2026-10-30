@@ -12,9 +12,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static uady.ucan.proyecto.Alerta.setAlert;
+import static uady.ucan.proyecto.Alerta.mostrarAlerta;
 
-public class RecibirCSVUsuario extends ControladorVentanas {
+public class RecibirCSVUsuario {
     @FXML
     private TextField csvUsuario;
     @FXML
@@ -55,7 +55,7 @@ public class RecibirCSVUsuario extends ControladorVentanas {
         } catch (IOException e) {
             mostrarCsvUsuario.setText("No seleccionado");
             mostrarCsvUsuario.setTextFill(Color.RED);
-            setAlert(Alert.AlertType.WARNING, "Error al buscar archivo: " + e.getMessage());
+            mostrarAlerta(Alert.AlertType.WARNING, "Error al buscar archivo: " + e.getMessage());
             return;
         }
 

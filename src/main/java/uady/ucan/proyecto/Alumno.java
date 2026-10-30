@@ -29,9 +29,10 @@ public class Alumno {
     public String getNombres() {
         return nombres;
     }
-
+    //ID-10: Self Encapsulate Field
+    //Anteriormente se accedia directamente a los campos privados de alumno, ahora es a traves de getters
     public String getNombreCompleto() {
-        return apellido1 + " "+apellido2 +  " "+ nombres;
+        return getAppellido1() + " " + getAppellido2() + " " + getNombres();
     }
 
     void setCalificacion(int calificacion) {

@@ -8,13 +8,13 @@ import javafx.scene.control.ButtonType;
 public class Alerta {
     static Alert defaultAlert;
     static ButtonType acceptButton = new ButtonType("Aceptar");
-
-    static public void setAlert(Alert.AlertType alertType, String argument) {
-        defaultAlert = new Alert(alertType);
+    //ID-16: Rename Method (mostrarAlerta(tipo, mensaje)).
+    static public void mostrarAlerta(Alert.AlertType tipo, String mensaje) {
+        defaultAlert = new Alert(tipo);
         defaultAlert.setTitle("Información");
         defaultAlert.setHeaderText(null);
         defaultAlert.getButtonTypes().setAll(acceptButton);
-        defaultAlert.setContentText(argument);
+        defaultAlert.setContentText(mensaje);
         defaultAlert.show();
     }
 }

@@ -10,6 +10,11 @@ import java.util.ArrayList;
 public class RepositorioUsuarios {
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
+    //ID-10: Self Encapsulate Field
+    public ArrayList<Usuario> getListaUsuarios(){
+        return listaUsuarios;
+    }
+
     public void leerUsuarios() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/users.csv"))) {
             String linea = br.readLine();
@@ -17,7 +22,7 @@ public class RepositorioUsuarios {
             while (linea != null) {
                 String[] dato = linea.split(",");
                 //Inline Method - Nuevo
-                listaUsuarios.add(new Usuario(dato[0], dato[1]));
+                getListaUsuarios().add(new Usuario(dato[0], dato[1]));
                 linea = br.readLine();
             }
         } catch (IOException e) {
@@ -26,7 +31,7 @@ public class RepositorioUsuarios {
     }
 
     public Usuario buscarUsuario(String nickname) {
-        for (Usuario u : listaUsuarios) {
+        for (Usuario u : getListaUsuarios()) {
             if (u.getNickname().equals(nickname)) {
                 return u;
             }

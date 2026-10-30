@@ -6,10 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.*;
 import java.security.NoSuchAlgorithmException;
 
-import static uady.ucan.proyecto.Alerta.setAlert;
+import static uady.ucan.proyecto.Alerta.mostrarAlerta;
 
 public class Login {
     @FXML private TextField usuarioEntrada;
@@ -35,18 +34,18 @@ public class Login {
         Usuario usuario = repositorioUsuarios.buscarUsuario(usuarioEntrada.getText());
 
         if (usuario == null) {
-            setAlert(Alert.AlertType.WARNING, "Usuario incorrecto.");
+            mostrarAlerta(Alert.AlertType.WARNING, "Usuario incorrecto.");
             return;
         }
 
         boolean contraseñaCorrecta = usuario.getPassword().equals(
                 encriptador.encriptarContraseña(contraseñaEntrada.getText()));
         if (!contraseñaCorrecta) {
-            setAlert(Alert.AlertType.WARNING, "Contraseña incorrecta.");
+            mostrarAlerta(Alert.AlertType.WARNING, "Contraseña incorrecta.");
             return;
         }
         //ID-19: se delega la acción
         gestorVentanas.menu();
-        botonLogin.getScene().getWindow().hide();
+        gestorVentanas.cerrarVentanaDe(botonLogin);
     }
 }
