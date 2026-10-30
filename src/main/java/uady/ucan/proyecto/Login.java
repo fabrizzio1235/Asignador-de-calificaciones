@@ -20,7 +20,7 @@ public class Login {
 
     // Ya no se hace el "new", se declara vacío para recibirlo por constructor
     private RepositorioUsuarios repositorioUsuarios;
-    private Encriptador encriptador = new Encriptador();
+    private Autenticador autenticador = new Autenticador();
 
     // ID-15: Add Parameter
     public Login(RepositorioAlumnos repositorioAlumnos, RepositorioUsuarios repositorioUsuarios) {
@@ -34,17 +34,8 @@ public class Login {
         repositorioUsuarios.leerUsuarios();
         Usuario usuario = repositorioUsuarios.buscarUsuario(usuarioEntrada.getText());
 
-        if (usuario == null) {
-            setAlert(Alert.AlertType.WARNING, "Usuario incorrecto.");
-            return;
-        }
+        autenticador.revisarCredenciales(usuario, contraseñaEntrada);
 
-        boolean contraseñaCorrecta = usuario.getPassword().equals(
-                encriptador.encriptarContraseña(contraseñaEntrada.getText()));
-        if (!contraseñaCorrecta) {
-            setAlert(Alert.AlertType.WARNING, "Contraseña incorrecta.");
-            return;
-        }
         //ID-19: se delega la acción
         gestorVentanas.menu();
         botonLogin.getScene().getWindow().hide();
