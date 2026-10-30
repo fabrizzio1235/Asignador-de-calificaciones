@@ -9,7 +9,8 @@ import javafx.scene.control.TextField;
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
 
-import static uady.ucan.proyecto.Alerta.setAlert;
+import static uady.ucan.proyecto.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.EstadoAutenticacion.EXITO;
 
 public class Login {
     @FXML private TextField usuarioEntrada;
@@ -32,12 +33,27 @@ public class Login {
     @FXML
     public void inicioSesion() throws NoSuchAlgorithmException { // 0: Entrar a la app, 1: Salir
         repositorioUsuarios.leerUsuarios();
-        Usuario usuario = repositorioUsuarios.buscarUsuario(usuarioEntrada.getText());
 
-        autenticador.revisarCredenciales(usuario, contraseñaEntrada);
+            Usuario usuario = repositorioUsuarios.buscarUsuario(usuarioEntrada.getText());
+            EstadoAutenticacion estadoLogin = autenticador.revisarCredenciales(usuario, contraseñaEntrada);
 
-        //ID-19: se delega la acción
-        gestorVentanas.menu();
-        botonLogin.getScene().getWindow().hide();
+            switch (estadoLogin) {
+                case EXITO:
+                    break;
+
+                case USUARIO_INCORRECTO:
+                    mostrarAlerta(Alert.AlertType.WARNING, "Usuario incorrecto.");
+                    break;
+
+                case CONTRASENA_INCORRECTA:
+                    mostrarAlerta(Alert.AlertType.WARNING, "Contraseña incorrecta.");
+                    break;
+            }
+
+            if (estadoLogin == EXITO) {
+                //ID-19: se delega la acción
+                gestorVentanas.menu();
+                botonLogin.getScene().getWindow().hide();
+            }
+        }
     }
-}

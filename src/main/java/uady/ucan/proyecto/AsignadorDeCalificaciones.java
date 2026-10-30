@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 
 import static uady.ucan.proyecto.Alerta.mostrarAlerta;
 
-
 public class AsignadorDeCalificaciones implements Initializable {
     @FXML private TableView<Alumno> tablaAlumnos;
     @FXML private TableColumn<Alumno, String> matricula;
