@@ -1,4 +1,4 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.servicios;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

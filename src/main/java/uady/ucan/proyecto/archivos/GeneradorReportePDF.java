@@ -1,20 +1,18 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.archivos;
 
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import uady.ucan.proyecto.modelo.Alumno;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 
 import java.awt.*;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-import static uady.ucan.proyecto.Alerta.mostrarAlerta;
-
-public class GeneradorReportePDF extends GeneradorDeArchivo{
+public class GeneradorReportePDF extends GeneradorDeArchivo {
 
     // ID-15: Add Parameter
     public GeneradorReportePDF(RepositorioAlumnos repositorioAlumnos) {

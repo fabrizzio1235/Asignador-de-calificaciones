@@ -1,4 +1,4 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.modelo;
 
 public class Alumno {
     private final String matricula;
@@ -35,7 +35,7 @@ public class Alumno {
         return getAppellido1() + " " + getAppellido2() + " " + getNombres();
     }
 
-    void setCalificacion(int calificacion) {
+    public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
 

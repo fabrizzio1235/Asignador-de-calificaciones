@@ -1,4 +1,4 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.servicios;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -7,12 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import uady.ucan.proyecto.modelo.Alumno;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static uady.ucan.proyecto.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
 
 public class AsignadorDeCalificaciones implements Initializable {
     @FXML private TableView<Alumno> tablaAlumnos;

@@ -1,6 +1,9 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.servicios;
 
 import javafx.scene.control.PasswordField;
+import uady.ucan.proyecto.modelo.EstadoAutenticacion;
+import uady.ucan.proyecto.modelo.Usuario;
+
 import java.security.NoSuchAlgorithmException;
 
 public class Autenticador {

@@ -1,4 +1,6 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.repositorios;
+
+import uady.ucan.proyecto.modelo.Usuario;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

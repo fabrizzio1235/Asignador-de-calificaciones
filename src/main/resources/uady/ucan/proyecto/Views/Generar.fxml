@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<VBox alignment="CENTER" prefHeight="250" prefWidth="400" spacing="20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.ControladorGeneradorArchivos">
+<VBox alignment="CENTER" prefHeight="250" prefWidth="400" spacing="20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.archivos.ControladorGeneradorArchivos">
     <stylesheets>
         <URL value="@Styles/styles.css"/>
     </stylesheets>

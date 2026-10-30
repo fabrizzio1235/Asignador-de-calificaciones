@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import java.net.URL?>
-<VBox alignment="CENTER" prefWidth="330" prefHeight="180" spacing="20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.RecibirCSVUsuario">
+<VBox alignment="CENTER" prefWidth="330" prefHeight="180" spacing="20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.archivos.RecibirCSVUsuario">
     <stylesheets>
         <URL value="@Styles/styles.css"/>
     </stylesheets>

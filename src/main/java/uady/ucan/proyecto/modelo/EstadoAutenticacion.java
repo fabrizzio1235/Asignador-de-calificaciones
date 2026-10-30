@@ -1,4 +1,4 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.modelo;
 
 public enum EstadoAutenticacion {
     USUARIO_INCORRECTO,

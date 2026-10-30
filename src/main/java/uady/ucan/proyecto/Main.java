@@ -2,8 +2,11 @@ package uady.ucan.proyecto;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import uady.ucan.proyecto.controlador.ControladorVentanas;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
+import uady.ucan.proyecto.repositorios.RepositorioUsuarios;
 
-import static uady.ucan.proyecto.ControladorVentanas.LOGIN_VIEW_FXML;
+import static uady.ucan.proyecto.controlador.ControladorVentanas.LOGIN_VIEW_FXML;
 
 public class Main extends Application {
 

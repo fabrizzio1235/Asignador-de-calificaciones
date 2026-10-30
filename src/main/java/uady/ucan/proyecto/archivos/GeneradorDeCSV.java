@@ -1,14 +1,15 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.archivos;
 import javafx.scene.control.Alert;
+import uady.ucan.proyecto.modelo.Alumno;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static uady.ucan.proyecto.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
 
 public class GeneradorDeCSV extends GeneradorDeArchivo {
 

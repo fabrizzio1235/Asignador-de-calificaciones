@@ -7,6 +7,7 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.junit.jupiter.api.Test;
+import uady.ucan.proyecto.modelo.Alumno;
 
 import static org.junit.jupiter.api.Assertions.*;
 

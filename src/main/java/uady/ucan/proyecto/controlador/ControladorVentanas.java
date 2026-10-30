@@ -1,4 +1,4 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.controlador;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import uady.ucan.proyecto.archivos.ControladorGeneradorArchivos;
+import uady.ucan.proyecto.archivos.RecibirCSVUsuario;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
+import uady.ucan.proyecto.repositorios.RepositorioUsuarios;
+import uady.ucan.proyecto.servicios.AsignadorDeCalificaciones;
 
 import java.io.IOException;
 
-import static uady.ucan.proyecto.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
 
 public class ControladorVentanas {
     public static final String VIEWS_DIRECTORY = "/uady/ucan/proyecto/Views/";
@@ -20,8 +25,8 @@ public class ControladorVentanas {
     public static final String CALIFICACIONES_VIEW_FXML = VIEWS_DIRECTORY + "Calificaciones.fxml";
     public static final String CSV_USUARIO_VIEW_FXML = VIEWS_DIRECTORY + "CSVUsuario.fxml";
 
-    private  RepositorioAlumnos repositorioAlumnos;
-    private  RepositorioUsuarios repositorioUsuarios;
+    private RepositorioAlumnos repositorioAlumnos;
+    private RepositorioUsuarios repositorioUsuarios;
 
     @FXML
     private Button botonSalir;

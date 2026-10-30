@@ -1,9 +1,11 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.archivos;
 
 import javafx.scene.control.Alert;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
+
 import java.io.File;
 
-import static uady.ucan.proyecto.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
 
 //ID-20 : Extract Superclass
 //GeneradorDeCSV y GeneradorReportePDF seguian pasos para generar en una misma secuencia.

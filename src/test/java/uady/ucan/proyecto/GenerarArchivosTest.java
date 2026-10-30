@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uady.ucan.proyecto.modelo.Alumno;
 
 import java.io.File;
 import java.io.IOException;

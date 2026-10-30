@@ -7,6 +7,9 @@ import javafx.stage.Window;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.testfx.framework.junit5.ApplicationTest;
+import uady.ucan.proyecto.controlador.ControladorVentanas;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
+import uady.ucan.proyecto.repositorios.RepositorioUsuarios;
 
 import java.io.File;
 import java.util.ArrayList;

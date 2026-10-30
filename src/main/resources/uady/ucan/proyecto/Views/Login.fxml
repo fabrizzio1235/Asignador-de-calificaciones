@@ -12,7 +12,7 @@
 <VBox alignment="CENTER" prefHeight="300" prefWidth="400"
       spacing="30.0" style="-fx-padding: 50;"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="uady.ucan.proyecto.Login">
+      fx:controller="uady.ucan.proyecto.controlador.Login">
 
     <stylesheets>
         <URL value="@Styles/styles.css" />

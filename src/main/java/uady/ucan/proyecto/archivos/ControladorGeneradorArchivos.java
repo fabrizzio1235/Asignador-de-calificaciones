@@ -1,7 +1,8 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.archivos;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 
 public class ControladorGeneradorArchivos {
 

@@ -1,4 +1,4 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.controlador;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

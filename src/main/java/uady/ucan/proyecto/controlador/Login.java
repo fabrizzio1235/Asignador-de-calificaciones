@@ -1,16 +1,20 @@
-package uady.ucan.proyecto;
+package uady.ucan.proyecto.controlador;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import uady.ucan.proyecto.modelo.EstadoAutenticacion;
+import uady.ucan.proyecto.modelo.Usuario;
+import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
+import uady.ucan.proyecto.repositorios.RepositorioUsuarios;
+import uady.ucan.proyecto.servicios.Autenticador;
 
-import java.io.*;
 import java.security.NoSuchAlgorithmException;
 
-import static uady.ucan.proyecto.Alerta.mostrarAlerta;
-import static uady.ucan.proyecto.EstadoAutenticacion.EXITO;
+import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.modelo.EstadoAutenticacion.EXITO;
 
 public class Login {
     @FXML private TextField usuarioEntrada;
