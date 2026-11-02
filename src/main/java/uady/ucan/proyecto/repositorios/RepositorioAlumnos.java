@@ -18,8 +18,14 @@ public class RepositorioAlumnos {
         this.listaAlumnos = listaAlumnos;
     }
 
+    //Decompose Conditional - Nuevo
+    //"Sin lista cargada" se representa con null; solo este método lo sabe y los demás preguntan por su nombre
+    public boolean hayAlumnosCargados() {
+        return getAlumnos() != null;
+    }
+
     public boolean todosCalificados() {
-        if(getAlumnos() == null) {return false;}
+        if(!hayAlumnosCargados()) {return false;}
         for (Alumno a : getAlumnos()) {
             if (a.getCalificacion() == -1) {
                 return false;

@@ -14,6 +14,14 @@ import java.util.ArrayList;
 
 public class GeneradorPDF extends GeneradorArchivo {
 
+    //Replace Magic Number with Symbolic Constant - Nuevo
+    private static final float TAMANO_LETRA_TITULO = 20;
+    private static final float TAMANO_LETRA_SUBTITULO = 14;
+    private static final int COLUMNAS_TABLA = 3;
+    private static final float ANCHO_COLUMNA_MATRICULA = 1f;
+    private static final float ANCHO_COLUMNA_NOMBRE = 3f;
+    private static final float ANCHO_COLUMNA_CALIFICACION = 1f;
+
     // ID-15: Add Parameter
     public GeneradorPDF(RepositorioAlumnos repositorioAlumnos) {
         super(repositorioAlumnos);
@@ -43,22 +51,22 @@ public class GeneradorPDF extends GeneradorArchivo {
     //Usa alumnoActual en vez de alumnitos.get(i) repetido
     //nombreFinal en vez de pdfNombre
     private Paragraph crearTitulo() {
-        Font fontTit = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.black);
+        Font fontTit = FontFactory.getFont(FontFactory.HELVETICA_BOLD, TAMANO_LETRA_TITULO, Color.black);
         Paragraph tit = new Paragraph("Reporte de Calificaciones", fontTit);
         tit.setAlignment(Element.ALIGN_CENTER);
         return tit;
     }
 
     private Paragraph crearSubtitulo() {
-        Font fontsub = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14, Color.black);
+        Font fontsub = FontFactory.getFont(FontFactory.HELVETICA_BOLD, TAMANO_LETRA_SUBTITULO, Color.black);
         Paragraph sub = new Paragraph("Diseño de Software", fontsub);
         sub.setAlignment(Element.ALIGN_CENTER);
         return sub;
     }
 
     private PdfPTable crearTabla(ArrayList<Alumno> alumnitos) {
-        PdfPTable tabla = new PdfPTable(3);
-        tabla.setWidths(new float[] {1f, 3f, 1f});
+        PdfPTable tabla = new PdfPTable(COLUMNAS_TABLA);
+        tabla.setWidths(new float[] {ANCHO_COLUMNA_MATRICULA, ANCHO_COLUMNA_NOMBRE, ANCHO_COLUMNA_CALIFICACION});
 
         tabla.addCell("Matrícula");
         tabla.addCell("Nombre");

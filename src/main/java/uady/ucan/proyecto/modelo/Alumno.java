@@ -1,6 +1,10 @@
 package uady.ucan.proyecto.modelo;
 
 public class Alumno {
+    //Replace Magic Number with Symbolic Constant - Nuevo
+    public static final int CALIFICACION_MINIMA = 0;
+    public static final int CALIFICACION_MAXIMA = 100;
+
     private final String matricula;
     private final String apellido1;
     private final String apellido2;

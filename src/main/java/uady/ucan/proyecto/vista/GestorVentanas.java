@@ -1,13 +1,14 @@
-package uady.ucan.proyecto.controlador;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
+package uady.ucan.proyecto.vista;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import uady.ucan.proyecto.archivos.LectorCSV;
+import uady.ucan.proyecto.controlador.ControladorArchivos;
+import uady.ucan.proyecto.controlador.ControladorLogin;
+import uady.ucan.proyecto.controlador.ControladorMenu;
 import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 import uady.ucan.proyecto.repositorios.RepositorioUsuarios;
 import uady.ucan.proyecto.servicios.ServicioCalificaciones;
@@ -16,7 +17,11 @@ import java.io.IOException;
 
 import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
 
-public class ControladorVentanas {
+//ID-04: Extract Class (y Move Field)
+//ControladorVentanas mezclaba el menú principal con los métodos utilitarios para abrir ventanas.
+//Ahora GestorVentanas se encarga de abrir y cerrar ventanas, y de crear los controladores que reciben parámetros;
+//cualquier controlador puede usarlo sin depender del menú.
+public class GestorVentanas {
     public static final String VIEWS_DIRECTORY = "/uady/ucan/proyecto/Views/";
     public static final String LOGIN_VIEW_FXML = VIEWS_DIRECTORY + "Login.fxml";
     public static final String MENU_VIEW_FXML = VIEWS_DIRECTORY + "Menu.fxml";
@@ -24,26 +29,19 @@ public class ControladorVentanas {
     public static final String CALIFICACIONES_VIEW_FXML = VIEWS_DIRECTORY + "Calificaciones.fxml";
     public static final String CSV_USUARIO_VIEW_FXML = VIEWS_DIRECTORY + "CSVUsuario.fxml";
 
-    private RepositorioAlumnos repositorioAlumnos;
-    private RepositorioUsuarios repositorioUsuarios;
-
-    @FXML
-    private Button botonSalir;
+    private final RepositorioAlumnos repositorioAlumnos;
+    private final RepositorioUsuarios repositorioUsuarios;
 
     // ID-15: Add Parameter (recibe los repositorios por constructor)
-    public ControladorVentanas(RepositorioAlumnos repositorioAlumnos, RepositorioUsuarios repositorioUsuarios) {
+    public GestorVentanas(RepositorioAlumnos repositorioAlumnos, RepositorioUsuarios repositorioUsuarios) {
         this.repositorioAlumnos = repositorioAlumnos;
         this.repositorioUsuarios = repositorioUsuarios;
     }
-    //ID-15 Por como funciona JAVA, hay que declarar un cosntructor vacio para que los constructores hijos llamen a este
-    //TODO Al aplicarse el ID-18(quitar los extends) se puede eliminar este constructor vacio
-
-    public ControladorVentanas() {}
 
     public void abrirVentana(String fxmlFileName, String title) {
         try {
             Stage st = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(ControladorVentanas.class.getResource(fxmlFileName));
+            FXMLLoader fxmlLoader = new FXMLLoader(GestorVentanas.class.getResource(fxmlFileName));
             //Evita que el fxml genere un controlador sin parametros
             fxmlLoader.setControllerFactory(this::crearClasesConParametros);
 
@@ -63,8 +61,8 @@ public class ControladorVentanas {
     // Metódo que se encarga de crear clases con parámetros (pŕincipalmente controladores)
     // que fxml sin ninguna intervencion generaria sin sus parametros
     private Object crearClasesConParametros (Class<?> tipo) {
-        if (tipo == ControladorVentanas.class) {
-            return new ControladorVentanas(repositorioAlumnos, repositorioUsuarios);
+        if (tipo == ControladorMenu.class) {
+            return new ControladorMenu(repositorioAlumnos, repositorioUsuarios);
         }
         if (tipo == LectorCSV.class) {
             return new LectorCSV(repositorioAlumnos);
@@ -86,52 +84,11 @@ public class ControladorVentanas {
         }
     }
 
-
-
-    @FXML
-    public void asignarCalificacion () {
-        abrirVentana(CALIFICACIONES_VIEW_FXML, "Gestion de Calificaciones");
-    }
-
-    @FXML
-    public void recibirCSV () {
-        abrirVentana(CSV_USUARIO_VIEW_FXML, "Busqueda de CSV");
-    }
-
-    @FXML
-    public void generar () {
-        if(repositorioAlumnos.getAlumnos() == null){
-            mostrarAlerta(Alert.AlertType.WARNING, "Asegurarse de escoger el archivo CSV");
-            return;
-        }
-        abrirVentana(GENERAR_VIEW_FXML, "Generar CSV/PDF");
-
-    }
-    @FXML
-    public void menu (){
-        abrirVentana(MENU_VIEW_FXML, "Menu Principal");
-    }
-
-    @FXML
-    public void login() {
-        abrirVentana(LOGIN_VIEW_FXML, "Inicio de Sesión");
-    }
-
-    public void cerrarSesion () {
-        cerrarVentanaDe(botonSalir);
-        login();
-    }
-
-    @FXML
-    public void salir () {
-        Platform.exit();
-    }
-    //ID-08 Introduce Foreign Method (cerrarVentanaDe(Node control) en ControladorVentanas)
+    //ID-08 Introduce Foreign Method (cerrarVentanaDe(Node control))
     //  Dos clases usaban la misma cadena de llamadas para cerrar la ventana, así que
     // se propone una operación que javaFx no ofrece directamente mediante el metodo
     public void cerrarVentanaDe(Node control){
         control.getScene().getWindow().hide();
 
     }
-
 }

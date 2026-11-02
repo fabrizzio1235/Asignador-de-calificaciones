@@ -11,7 +11,6 @@ import uady.ucan.proyecto.modelo.Alumno;
 import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
@@ -33,13 +32,22 @@ public class ServicioCalificaciones implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<Alumno> listaPadre = repositorioAlumnos.getAlumnos();
+        cargarAlumnosEnTabla();
+        configurarColumnas();
+    }
 
-        if (listaPadre != null) {
-            alumnos = FXCollections.observableArrayList(listaPadre);
+    //Extract Method - Nuevo
+    //Llena la tabla con los alumnos del CSV; si no hay lista cargada la tabla queda sin items
+    private void cargarAlumnosEnTabla() {
+        if (repositorioAlumnos.hayAlumnosCargados()) {
+            alumnos = FXCollections.observableArrayList(repositorioAlumnos.getAlumnos());
             tablaAlumnos.setItems(alumnos);
         }
+    }
 
+    //Extract Method - Nuevo
+    //Define qué muestra cada columna y deja editable la de calificación
+    private void configurarColumnas() {
         matricula.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getMatricula()));
         alumno.setCellValueFactory(cellData ->
@@ -50,22 +58,26 @@ public class ServicioCalificaciones implements Initializable {
         tablaAlumnos.setEditable(true);
         calificacion.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        calificacion.setOnEditCommit(event -> {
-            Alumno alumnoEditado = event.getRowValue();
+        calificacion.setOnEditCommit(this::manejarEdicionCalificacion);
+    }
 
-            try {
-                int nuevaCal = Integer.parseInt(event.getNewValue()); //no recibe decimales
-                if (nuevaCal >= 0 && nuevaCal <= 100) {
-                    alumnoEditado.setCalificacion(nuevaCal);
-                } else {
-                    mostrarAlerta(Alert.AlertType.WARNING, "Calificación invalida --> 0<= calificacion <= 100");
-                    tablaAlumnos.refresh();
-                }
-            } catch (NumberFormatException e) {
-                mostrarAlerta(Alert.AlertType.WARNING, "Calificación invalida solo acepta enteros --> 0<= calificacion <= 100");
+    //Extract Method - Nuevo
+    //Qué ocurre al confirmar la edición de una calificación en la tabla
+    private void manejarEdicionCalificacion(TableColumn.CellEditEvent<Alumno, String> event) {
+        Alumno alumnoEditado = event.getRowValue();
+
+        try {
+            int nuevaCal = Integer.parseInt(event.getNewValue()); //no recibe decimales
+            if (nuevaCal >= Alumno.CALIFICACION_MINIMA && nuevaCal <= Alumno.CALIFICACION_MAXIMA) {
+                alumnoEditado.setCalificacion(nuevaCal);
+            } else {
+                mostrarAlerta(Alert.AlertType.WARNING, "Calificación invalida --> 0<= calificacion <= 100");
                 tablaAlumnos.refresh();
             }
-        });
+        } catch (NumberFormatException e) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Calificación invalida solo acepta enteros --> 0<= calificacion <= 100");
+            tablaAlumnos.refresh();
+        }
     }
 
 }

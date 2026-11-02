@@ -17,6 +17,13 @@ import java.util.ArrayList;
 import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
 
 public class LectorCSV {
+    //Replace Magic Number with Symbolic Constant - Nuevo
+    private static final int COLUMNAS_POR_ALUMNO = 4;
+    private static final int COLUMNA_MATRICULA = 0;
+    private static final int COLUMNA_APELLIDO1 = 1;
+    private static final int COLUMNA_APELLIDO2 = 2;
+    private static final int COLUMNA_NOMBRES = 3;
+
     @FXML
     private TextField csvUsuario;
     @FXML
@@ -46,9 +53,9 @@ public class LectorCSV {
 
             while (linea != null) {
                 String[] renglon = linea.split(",");
-                if (renglon.length == 4) {
+                if (renglon.length == COLUMNAS_POR_ALUMNO) {
                     //Inline Method - Nuevo
-                    nuevaListaAlumnos.add(new Alumno(renglon[0], renglon[1], renglon[2], renglon[3]));
+                    nuevaListaAlumnos.add(new Alumno(renglon[COLUMNA_MATRICULA], renglon[COLUMNA_APELLIDO1], renglon[COLUMNA_APELLIDO2], renglon[COLUMNA_NOMBRES]));
                 }
                 linea = br.readLine();
             }

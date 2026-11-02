@@ -7,15 +7,15 @@ import javafx.stage.Window;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.testfx.framework.junit5.ApplicationTest;
-import uady.ucan.proyecto.controlador.ControladorVentanas;
 import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 import uady.ucan.proyecto.repositorios.RepositorioUsuarios;
+import uady.ucan.proyecto.vista.GestorVentanas;
 
 import java.io.File;
 import java.util.ArrayList;
 
 abstract class PruebaBase extends ApplicationTest {
-    protected ControladorVentanas controlador;
+    protected GestorVentanas gestorVentanas;
 
     @Override
     public void start(Stage stage) {
@@ -24,10 +24,10 @@ abstract class PruebaBase extends ApplicationTest {
 
     @BeforeEach
     void prepararEstado() {
-            // ID-15 y ID-02
+        // ID-15 y ID-02
         RepositorioAlumnos repositorioAlumnos = new RepositorioAlumnos();
         RepositorioUsuarios repositorioUsuarios = new RepositorioUsuarios();
-        controlador = new ControladorVentanas(repositorioAlumnos, repositorioUsuarios);
+        gestorVentanas = new GestorVentanas(repositorioAlumnos, repositorioUsuarios);
     }
 
     @AfterEach
@@ -36,7 +36,7 @@ abstract class PruebaBase extends ApplicationTest {
     }
 
     protected void abrir(String rutaFxml, String titulo) {
-        interact(() -> controlador.abrirVentana(rutaFxml, titulo));
+        interact(() -> gestorVentanas.abrirVentana(rutaFxml, titulo));
     }
 
     protected boolean hayVentana(String titulo) {

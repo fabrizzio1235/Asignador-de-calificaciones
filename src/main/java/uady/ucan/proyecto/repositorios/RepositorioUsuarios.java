@@ -10,6 +10,11 @@ import java.util.ArrayList;
 // Ahora existe una clase que se encarga del manejo de los usuarios que pueden acceder a la aplicación.
 
 public class RepositorioUsuarios {
+    //Replace Magic Number with Symbolic Constant - Nuevo
+    //users.csv: columna 0 = usuario, columna 1 = contraseña cifrada
+    private static final int COLUMNA_USUARIO = 0;
+    private static final int COLUMNA_CONTRASENA = 1;
+
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
     //ID-10: Self Encapsulate Field
@@ -24,7 +29,7 @@ public class RepositorioUsuarios {
             while (linea != null) {
                 String[] dato = linea.split(",");
                 //Inline Method - Nuevo
-                getListaUsuarios().add(new Usuario(dato[0], dato[1]));
+                getListaUsuarios().add(new Usuario(dato[COLUMNA_USUARIO], dato[COLUMNA_CONTRASENA]));
                 linea = br.readLine();
             }
         } catch (IOException e) {
