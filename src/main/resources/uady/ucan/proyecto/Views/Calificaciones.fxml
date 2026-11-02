@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import java.net.URL?>
 
-<AnchorPane minHeight="500" minWidth="400" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.servicios.AsignadorDeCalificaciones">
+<AnchorPane minHeight="500" minWidth="400" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uady.ucan.proyecto.servicios.ServicioCalificaciones">
     <stylesheets>
         <URL value="@Styles/styles.css"/>
     </stylesheets>

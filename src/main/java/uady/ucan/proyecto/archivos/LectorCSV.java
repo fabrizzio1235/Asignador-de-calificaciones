@@ -14,9 +14,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
 
-public class RecibirCSVUsuario {
+public class LectorCSV {
     @FXML
     private TextField csvUsuario;
     @FXML
@@ -30,7 +30,7 @@ public class RecibirCSVUsuario {
 
 
     // ID-15: Add Parameter
-    public RecibirCSVUsuario(RepositorioAlumnos repositorioAlumnos) {
+    public LectorCSV(RepositorioAlumnos repositorioAlumnos) {
         this.repositorioAlumnos = repositorioAlumnos;
     }
 

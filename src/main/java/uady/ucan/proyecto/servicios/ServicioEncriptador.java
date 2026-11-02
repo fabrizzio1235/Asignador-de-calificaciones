@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 // La lógica de encriptación de contraseñas está en su propia clase ahora.
 
-public class Encriptador {
+public class ServicioEncriptador {
     private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (int i = 0; i < hash.length; i++) {

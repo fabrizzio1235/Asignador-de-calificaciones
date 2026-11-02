@@ -5,16 +5,16 @@ import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 
 import java.io.File;
 
-import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
 
 //ID-20 : Extract Superclass
 //GeneradorDeCSV y GeneradorReportePDF seguian pasos para generar en una misma secuencia.
 //Una superclase disminuye la repeticion de codigo y expone el comportamiento en comun
 
-public abstract class GeneradorDeArchivo {
+public abstract class GeneradorArchivo {
 
     protected final RepositorioAlumnos repositorioAlumnos;
-    protected GeneradorDeArchivo(RepositorioAlumnos repositorioAlumnos) {
+    protected GeneradorArchivo(RepositorioAlumnos repositorioAlumnos) {
         this.repositorioAlumnos = repositorioAlumnos;
     }
 

@@ -14,9 +14,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
 
-public class AsignadorDeCalificaciones implements Initializable {
+public class ServicioCalificaciones implements Initializable {
     @FXML private TableView<Alumno> tablaAlumnos;
     @FXML private TableColumn<Alumno, String> matricula;
     @FXML private TableColumn<Alumno, String> alumno;
@@ -27,7 +27,7 @@ public class AsignadorDeCalificaciones implements Initializable {
     private ObservableList<Alumno> alumnos = null;
 
     // ID-15: Add Parameter
-    public AsignadorDeCalificaciones(RepositorioAlumnos repositorioAlumnos) {
+    public ServicioCalificaciones(RepositorioAlumnos repositorioAlumnos) {
         this.repositorioAlumnos = repositorioAlumnos;
     }
 

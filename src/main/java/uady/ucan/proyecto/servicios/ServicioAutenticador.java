@@ -6,8 +6,8 @@ import uady.ucan.proyecto.modelo.Usuario;
 
 import java.security.NoSuchAlgorithmException;
 
-public class Autenticador {
-    private Encriptador encriptador = new Encriptador();
+public class ServicioAutenticador {
+    private ServicioEncriptador encriptador = new ServicioEncriptador();
 
     public EstadoAutenticacion revisarCredenciales(Usuario usuario, PasswordField contraseña) throws NoSuchAlgorithmException {
         if (usuario == null) {

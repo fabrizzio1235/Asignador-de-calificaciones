@@ -9,16 +9,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
 
-public class GeneradorDeCSV extends GeneradorDeArchivo {
+public class GeneradorCSV extends GeneradorArchivo {
 
     @Override protected String nombrePorDefecto() { return "Calificaciones"; }
     @Override protected String extension() { return ".csv"; }
     @Override protected String mensajeExito() { return "Archivo CSV creado con exito en: "; }
 
     // ID-15: Add Parameter
-    public GeneradorDeCSV(RepositorioAlumnos repositorioAlumnos) {
+    public GeneradorCSV(RepositorioAlumnos repositorioAlumnos) {
         super(repositorioAlumnos);
     }
 

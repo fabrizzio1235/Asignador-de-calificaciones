@@ -19,4 +19,6 @@ module uady.ucan.proyecto {
     opens uady.ucan.proyecto.controlador to javafx.fxml;
     exports uady.ucan.proyecto.archivos;
     opens uady.ucan.proyecto.archivos to javafx.fxml;
+    exports uady.ucan.proyecto.vista;
+    opens uady.ucan.proyecto.vista to javafx.fxml;
 }

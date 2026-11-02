@@ -7,15 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import uady.ucan.proyecto.archivos.ControladorGeneradorArchivos;
-import uady.ucan.proyecto.archivos.RecibirCSVUsuario;
+import uady.ucan.proyecto.archivos.LectorCSV;
 import uady.ucan.proyecto.repositorios.RepositorioAlumnos;
 import uady.ucan.proyecto.repositorios.RepositorioUsuarios;
-import uady.ucan.proyecto.servicios.AsignadorDeCalificaciones;
+import uady.ucan.proyecto.servicios.ServicioCalificaciones;
 
 import java.io.IOException;
 
-import static uady.ucan.proyecto.controlador.Alerta.mostrarAlerta;
+import static uady.ucan.proyecto.controlador.ControladorAlerta.mostrarAlerta;
 
 public class ControladorVentanas {
     public static final String VIEWS_DIRECTORY = "/uady/ucan/proyecto/Views/";
@@ -67,17 +66,17 @@ public class ControladorVentanas {
         if (tipo == ControladorVentanas.class) {
             return new ControladorVentanas(repositorioAlumnos, repositorioUsuarios);
         }
-        if (tipo == RecibirCSVUsuario.class) {
-            return new RecibirCSVUsuario(repositorioAlumnos);
+        if (tipo == LectorCSV.class) {
+            return new LectorCSV(repositorioAlumnos);
         }
-        if (tipo == AsignadorDeCalificaciones.class) {
-            return new AsignadorDeCalificaciones(repositorioAlumnos);
+        if (tipo == ServicioCalificaciones.class) {
+            return new ServicioCalificaciones(repositorioAlumnos);
         }
-        if (tipo == Login.class) {
-            return new Login(repositorioAlumnos, repositorioUsuarios);
+        if (tipo == ControladorLogin.class) {
+            return new ControladorLogin(repositorioAlumnos, repositorioUsuarios);
         }
-        if (tipo == ControladorGeneradorArchivos.class) {
-            return new ControladorGeneradorArchivos(repositorioAlumnos);
+        if (tipo == ControladorArchivos.class) {
+            return new ControladorArchivos(repositorioAlumnos);
         }
         try {
             //Hace el comportamiento default, generar la clase sin parametros

@@ -12,10 +12,10 @@ import java.awt.*;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-public class GeneradorReportePDF extends GeneradorDeArchivo {
+public class GeneradorPDF extends GeneradorArchivo {
 
     // ID-15: Add Parameter
-    public GeneradorReportePDF(RepositorioAlumnos repositorioAlumnos) {
+    public GeneradorPDF(RepositorioAlumnos repositorioAlumnos) {
         super(repositorioAlumnos);
     }
 
