@@ -107,7 +107,7 @@ class GenerarArchivosTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Extract Method en generarCsv() (ID-01b) / Replace Nested Conditional with Guard Clauses (ID-13) / Replace Inheritance with Delegation (ID-18a)
+     * Técnica: Replace Nested Conditional with Guard Clauses (ID-13) / Replace Inheritance with Delegation (ID-18a)
      * Objetivo: Verificar que el archivo CSV generado incluye el encabezado esperado y ordena a los alumnos de menor a mayor calificación.
      * Resultado esperado: Primera línea es "Matricula,Primer Apellido,Segundo Apellido,Nombres,Calificacion", el primer alumno listado tiene calificación 50 y el último 100.
      * Datos: 6 alumnos con calificaciones asignadas en orden descendente (100, 90, 80, 70, 60, 50).
@@ -223,7 +223,7 @@ class GenerarArchivosTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Extract Method en generarCsv() (ID-01b) / Form Template Method (ID-20)
+     * Técnica: Form Template Method (ID-20)
      * Objetivo: Verificar que cuando ocurre una IOException al escribir el archivo CSV se muestra una alerta de error con el prefijo "Error: ".
      * Resultado esperado: Alerta abierta cuyo texto inicia con "Error: ".
      * Datos: csvNombre con subdirectorio inexistente "subcarpeta_inexistente/fallo".

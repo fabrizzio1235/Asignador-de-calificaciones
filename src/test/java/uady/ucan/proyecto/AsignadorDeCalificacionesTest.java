@@ -53,7 +53,7 @@ class AsignadorDeCalificacionesTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Move Method validación a Alumno (ID-04) / Replace Magic Number límites 0 y 100 (ID-11) / Extract Method (ID-01a)
+     * Técnica: Replace Magic Number límites 0 y 100 (ID-11) / Extract Method (ID-01a)
      * Objetivo: Verificar que editar la columna de calificación con valores enteros dentro del rango permitido (incluyendo límites 0 y 100) actualiza al alumno sin mostrar alerta.
      * Resultado esperado: La calificación del alumno cambia a 0 y luego a 100, sin abrir alertas.
      * Datos: Ediciones en fila 0 con valores "0" y "100".
@@ -75,7 +75,7 @@ class AsignadorDeCalificacionesTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Move Method validación a Alumno (ID-04) / Replace Magic Number límites 0 y 100 (ID-11) / Extract Method (ID-01a)
+     * Técnica: Replace Magic Number límites 0 y 100 (ID-11) / Extract Method (ID-01a)
      * Objetivo: Verificar que ingresar una calificación entera fuera del rango 0..100 (tanto negativa -5 como mayor a 100) muestra la alerta de advertencia y conserva la calificación anterior.
      * Resultado esperado: Se abre la alerta "Calificación invalida --> 0<= calificacion <= 100" en ambos casos y la calificación del alumno permanece en -1.
      * Datos: Ediciones en fila 0 con valores "-5" y "101".
