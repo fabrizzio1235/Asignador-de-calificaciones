@@ -97,7 +97,7 @@ class AsignadorDeCalificacionesTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Move Method validación a Alumno (ID-04) / Extract Method (ID-01a)
+     * Técnica: Extract Method (ID-01a)
      * Objetivo: Verificar que ingresar un valor no entero (decimales o caracteres) en la columna de calificación muestra la alerta correspondiente y no modifica al alumno.
      * Resultado esperado: Se abre la alerta "Calificación invalida solo acepta enteros --> 0<= calificacion <= 100" y la calificación permanece en -1.
      * Datos: Edición en fila 0 con valor "95.5".

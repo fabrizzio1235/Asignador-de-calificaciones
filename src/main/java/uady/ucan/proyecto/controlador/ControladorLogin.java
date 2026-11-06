@@ -59,7 +59,7 @@ public class ControladorLogin {
         if (estadoLogin == EXITO) {
             //ID-19: se delega la acción
             gestorVentanas.abrirVentana(MENU_VIEW_FXML, "Menu Principal");
-            botonLogin.getScene().getWindow().hide();
+            gestorVentanas.cerrarVentanaDe(botonLogin); //ID-08: Introduce Foreign Method
         }
     }
 }

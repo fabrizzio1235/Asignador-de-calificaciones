@@ -59,7 +59,7 @@ class LoginTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Extract Class (ID-05) / Introduce Foreign Method cerrarVentanaDe (ID-08) / Collapse Hierarchy (ID-17) / Replace Inheritance with Delegation (ID-19)
+     * Técnica: Extract Class GestorVentanas (ID-04) / Extract Class (ID-05) / Introduce Foreign Method cerrarVentanaDe (ID-08) / Collapse Hierarchy (ID-17) / Replace Inheritance with Delegation (ID-19)
      * Objetivo: Verificar que con credenciales válidas se abre el menú principal y se oculta la ventana de login, y que al pulsar "Cerrar sesión" se oculta el menú y vuelve a abrirse el login.
      * Resultado esperado: Tras login válido: "Menu Principal" visible e "Inicio de Sesión" oculta. Tras "Cerrar sesión": "Menu Principal" oculta e "Inicio de Sesión" visible.
      * Datos: usuario = "fransua", contraseña = "oty".

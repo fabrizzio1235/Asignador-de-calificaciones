@@ -107,7 +107,7 @@ class GenerarArchivosTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Replace Nested Conditional with Guard Clauses (ID-13) / Replace Inheritance with Delegation (ID-18a)
+     * Técnica: Replace Inheritance with Delegation (ID-18a)
      * Objetivo: Verificar que el archivo CSV generado incluye el encabezado esperado y ordena a los alumnos de menor a mayor calificación.
      * Resultado esperado: Primera línea es "Matricula,Primer Apellido,Segundo Apellido,Nombres,Calificacion", el primer alumno listado tiene calificación 50 y el último 100.
      * Datos: 6 alumnos con calificaciones asignadas en orden descendente (100, 90, 80, 70, 60, 50).
@@ -137,7 +137,7 @@ class GenerarArchivosTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Move Method todosCalificados() (ID-03) / Replace Nested Conditional with Guard Clauses (ID-13) / Replace Magic Number en PDF (ID-11) / Form Template Method (ID-20)
+     * Técnica: Move Method todosCalificados() (ID-03) / Replace Magic Number en PDF (ID-11) / Form Template Method (ID-20)
      * Objetivo: Verificar que cuando quedan alumnos sin calificar (-1), la generación de CSV se rechaza con la alerta "Quedan alumnos por calificar", mientras que el PDF sí se genera con sus encabezados y "S/C".
      * Resultado esperado: No se crea el archivo CSV, se muestra "Quedan alumnos por calificar", sí se crea el PDF y su texto contiene "Reporte de Calificaciones", "Matrícula", "Calificación" y "S/C".
      * Datos: Lista "listaDS" recién cargada (con calificaciones en -1 sin modificar).
