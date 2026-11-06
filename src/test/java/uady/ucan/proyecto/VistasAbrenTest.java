@@ -84,7 +84,7 @@ class VistasAbrenTest extends PruebaBase {
     }
 
     /*
-     * Técnica: Extract Class GestorVentanas (ID-04) / Rename Method en handlers de navegación (ID-16b) / Collapse Hierarchy (ID-17)
+     * Técnica: Extract Class GestorVentanas (ID-04) / Collapse Hierarchy (ID-17)
      * Objetivo: Verificar que los botones de navegación del menú principal abren las ventanas de búsqueda de CSV y gestión de calificaciones con sus títulos esperados.
      * Resultado esperado: Al pulsar #botonIrCsv se abre "Busqueda de CSV" y al pulsar #botonIrCalificaciones se abre "Gestion de Calificaciones".
      * Datos: Vista Menu.fxml, clics en #botonIrCsv y #botonIrCalificaciones.
